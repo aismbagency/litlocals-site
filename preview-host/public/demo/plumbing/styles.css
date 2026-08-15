@@ -853,7 +853,7 @@ blockquote.running cite {
 /* ——— Pizzato giant wordmark ——— */
 .wordmark {
   padding: clamp(2.4rem, 7vw, 4.5rem) var(--gutter) 0.4rem;
-  overflow: hidden;
+  overflow: visible;
 }
 .wordmark .wm {
   font-family: var(--serif);
@@ -879,8 +879,8 @@ blockquote.running cite {
 .pizzato-list { list-style: none; padding: 0; margin: 1.4rem 0 0; }
 .pizzato-list a {
   display: block;
-  overflow: hidden;
-  padding: 1.5rem 0 1.65rem;
+  overflow: visible;
+  padding: 1.5rem 0.2rem 1.65rem;
   border-top: 1px solid var(--ink);
   text-decoration: none;
 }
@@ -897,6 +897,7 @@ blockquote.running cite {
 }
 .pizzato-crop {
   margin: 0.1rem 0 0.4rem;
+  padding-left: 0.14em;
   font-family: var(--serif);
   font-weight: 700;
   font-size: clamp(2.05rem, 10.4vw, 6.2rem);
@@ -906,13 +907,14 @@ blockquote.running cite {
   overflow-wrap: anywhere;
   word-break: break-word;
   max-width: 100%;
+  overflow: visible;
 }
-.pizzato-crop span { display: block; margin-left: -0.08em; }
+.pizzato-crop span { display: block; margin-left: 0; }
 .pizzato-hint { font-size: 0.98rem; color: var(--ink-soft); max-width: 36rem; }
 .pizzato-object {
   width: min(42vw, 9.2rem);
   aspect-ratio: 1;
-  margin: 0.9rem 0 0;
+  margin: 0.9rem 0.15rem 0;
   overflow: hidden;
   border-radius: 50%;
   background: var(--ink);
@@ -940,7 +942,7 @@ blockquote.running cite {
     grid-template-columns: 1fr auto;
     column-gap: 2rem;
   }
-  .pizzato-object { grid-column: 2; grid-row: 1 / span 3; margin: 0; width: 8.4rem; }
+  .pizzato-object { grid-column: 2; grid-row: 1 / span 3; margin: 0.12rem 0.12rem 0 0; width: 8.4rem; }
 }
 
 .phone-plain {
@@ -1036,7 +1038,7 @@ blockquote.running cite {
     font-size: 0.56rem;
     letter-spacing: 0.1em;
   }
-  .wordmark { overflow: hidden; max-width: 100%; padding-inline: var(--gutter); }
+  .wordmark { overflow: visible; max-width: 100%; padding-inline: var(--gutter); }
   .wordmark .wm {
     font-size: clamp(2.4rem, 11.8vw, 3.6rem);
     white-space: normal;
@@ -1060,4 +1062,16 @@ blockquote.running cite {
     max-width: 100%;
   }
   .wrap { width: min(var(--max), calc(100% - (var(--gutter) * 2))); max-width: 100%; }
+}
+
+/* Optical flush: extra left pad so Playfair serifs are not shaved. Never a negative pull. */
+.pizzato-meta,
+.wordmark .wm,
+.page-head h1,
+.pizzato h2,
+.offer h2,
+.story h2,
+.section h2,
+.eyebrow {
+  padding-left: 0.12em;
 }
