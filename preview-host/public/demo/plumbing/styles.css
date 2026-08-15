@@ -381,7 +381,7 @@ body.nav-open { overflow: hidden; }
   font-size: clamp(2.35rem, 9vw, 5.4rem);
   font-weight: 600;
   line-height: 0.98;
-  max-width: 14ch;
+  max-width: 18ch;
 }
 .hero h1 .line-2 { display: block; padding-left: min(18vw, 6.5rem); }
 .hero h1 .line-3 { display: block; }
@@ -597,6 +597,8 @@ body.nav-open { overflow: hidden; }
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
+.process-row h3 .num,
+.review-stack h3 .num { display: none; }
 .process-row p { color: var(--ink-soft); max-width: 28rem; margin-top: 0.75rem; }
 @media (min-width: 800px) {
   .process-row {
@@ -989,4 +991,17 @@ blockquote.running cite {
 }
 @media (min-width: 720px) {
   .bleed-photo img { height: min(42vw, 32rem); }
+}
+/* Oak & Main — locked homeowner fixes */
+.pizzato-num, .idx, .story-num { display: none !important; }
+.story .body,
+.story .body p {
+  max-width: 38rem;
+}
+@media (min-width: 860px) {
+  .story {
+    grid-template-columns: minmax(36rem, 40rem) minmax(12rem, 1fr);
+  }
+  .story h2,
+  .story .body { grid-column: 1; }
 }
