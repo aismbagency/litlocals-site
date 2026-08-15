@@ -1,0 +1,6 @@
+.vercel/
+factory/out/
+**/.env
+**/.env.*
+*.pem
+*.p12
