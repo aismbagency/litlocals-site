@@ -49,6 +49,66 @@
       "source": "/amaryllis-landscape",
       "destination": "/amaryllis-landscape/",
       "permanent": false
+    },
+    {
+      "source": "/landi-hvac",
+      "destination": "/landi-hvac/",
+      "permanent": false
+    },
+    {
+      "source": "/cliffords-roofing",
+      "destination": "/cliffords-roofing/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing",
+      "destination": "/demo/plumbing/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing/emergency",
+      "destination": "/demo/plumbing/emergency/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing/drains",
+      "destination": "/demo/plumbing/drains/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing/water-heaters",
+      "destination": "/demo/plumbing/water-heaters/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing/sewer",
+      "destination": "/demo/plumbing/sewer/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing/commercial",
+      "destination": "/demo/plumbing/commercial/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing/area",
+      "destination": "/demo/plumbing/area/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing/about",
+      "destination": "/demo/plumbing/about/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing/reviews",
+      "destination": "/demo/plumbing/reviews/",
+      "permanent": false
+    },
+    {
+      "source": "/demo/plumbing/contact",
+      "destination": "/demo/plumbing/contact/",
+      "permanent": false
     }
   ],
   "headers": [
@@ -314,6 +374,87 @@
         {
           "key": "Cache-Control",
           "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/landi-hvac",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/landi-hvac/",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/landi-hvac/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/cliffords-roofing",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/cliffords-roofing/",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/cliffords-roofing/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/demo/plumbing",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/demo/plumbing/",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/demo/plumbing/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
         }
       ]
     }
