@@ -32,7 +32,7 @@
   });
 
   if (header && document.body.classList.contains("is-home")) {
-    var hero = document.querySelector(".hero");
+    var hero = document.querySelector(".hero, .page-hero");
     function onScroll() {
       var y = hero ? hero.getBoundingClientRect().bottom : 0;
       header.classList.toggle("is-solid", y < 72);

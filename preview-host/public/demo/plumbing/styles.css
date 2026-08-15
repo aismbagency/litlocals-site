@@ -181,6 +181,7 @@ body.is-home .site-header:not(.is-solid) .header-call {
 }
 .header-call .num { font-variant-numeric: tabular-nums; }
 .header-call .sample-phone {
+  display: none;
   font-size: 0.58rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -285,7 +286,8 @@ body.nav-open { overflow: hidden; }
     margin-right: auto;
   }
   .header-call { order: 3; font-size: 0.84rem; letter-spacing: 0.02em; text-transform: none; }
-  .header-call .num { display: inline; }
+  .header-call .num { display: none; }
+  .header-call .sample-phone { display: inline; font-size: 0.84rem; letter-spacing: 0.02em; text-transform: none; opacity: 1; }
   .nav { order: 2; flex: 1; justify-content: flex-end; margin-right: 0.75rem; }
 }
 
