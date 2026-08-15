@@ -1,0 +1,5 @@
+factory/
+.vercel/
+**/.env
+**/.env.*
+.git/
