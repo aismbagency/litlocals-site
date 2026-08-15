@@ -53,14 +53,14 @@ This factory does not contact anyone and does not send email and does not deploy
 
 ## Reviews
 
-Never invent reviews. If reviews is missing or empty, the page has no quotes. Packs have no fake reviews. Max two quotes when present.
+Never invent reviews. If reviews is missing or empty, the page has no quotes. If google_review_count and google_review_rating are both on the card, render a factual line like "Google · 12 reviews · 4.6" with no quotes. Omit the reviews section when count is missing and there are no quotes. Packs have no fake reviews. Max two quotes when present.
 
 ## Prospect JSON
 
 Schema: schema/prospect.schema.json
 Example (labeled EXAMPLE, not a real shop): examples/hector-plumbing.json
 Required: slug, name, vertical, city, phone.
-Optional: hours, service_area, google_url, yelp_url, reviews, photo_url, stripe_url.
+Optional: hours, service_area, google_url, yelp_url, reviews, google_review_count, google_review_rating, photo_url, stripe_url, email, license, preview_url.
 
 Frozen LA hunt cards were too thin for a second example (no review quotes, hours unknown). Do not invent those fields.
 

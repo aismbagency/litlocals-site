@@ -41,6 +41,11 @@
       "type": ["string", "null"],
       "description": "http(s) listing photo. Empty or omit to use the trade-pack Unsplash, then packs/heroes/."
     },
+    "email": { "type": ["string", "null"], "description": "Shop email from the card only. Omit if unknown." },
+    "license": { "type": ["string", "null"], "description": "License text from the card only. No invented status." },
+    "google_review_count": { "type": ["integer", "null"], "minimum": 1, "description": "Public Google review count from the card. Omit if missing." },
+    "google_review_rating": { "type": ["number", "null"], "minimum": 1, "maximum": 5, "description": "Public Google rating from the card. Omit if missing." },
+    "preview_url": { "type": ["string", "null"], "description": "Public preview URL for ask-a-question mailto." },
     "stripe_url": {
       "type": ["string", "null"],
       "description": "Optional. Buy button href. Defaults to #buy."

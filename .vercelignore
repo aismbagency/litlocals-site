@@ -3,3 +3,5 @@ factory/
 **/.env
 **/.env.*
 .git/
+
+preview-host/

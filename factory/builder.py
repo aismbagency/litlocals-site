@@ -290,24 +290,46 @@ def facts_rows(prospect: dict) -> str:
     return "\n".join(rows)
 
 
+def google_count_line(prospect: dict) -> str:
+    """Factual Google count + rating from the card. No quotes. No invented URLs."""
+    count = prospect.get("google_review_count")
+    rating = prospect.get("google_review_rating")
+    if count is None or rating is None or count == "" or rating == "":
+        return ""
+    try:
+        count_i = int(count)
+        rating_f = float(rating)
+    except (TypeError, ValueError):
+        return ""
+    if count_i < 1:
+        return ""
+    word = "review" if count_i == 1 else "reviews"
+    rating_s = f"{rating_f:.1f}"
+    return f'      <p class="review-count">Google · {count_i} {word} · {escape(rating_s)}</p>'
+
+
 def reviews_block(prospect: dict) -> str:
-    """Only quotes present in JSON. Never invent. Max two."""
-    raw = prospect.get("reviews")
-    if not raw or not isinstance(raw, list):
-        return ""
+    """Quotes from JSON plus a factual Google count line when present. Never invent."""
     items = []
-    for entry in raw:
-        if not isinstance(entry, dict):
-            continue
-        quote = (entry.get("quote") or "").strip()
-        if not quote:
-            continue
-        items.append(f'      <p class="said">“{escape(quote)}”</p>')
-        if len(items) >= MAX_REVIEWS:
-            break
-    if not items:
+    count_line = google_count_line(prospect)
+    raw = prospect.get("reviews")
+    if raw and isinstance(raw, list):
+        for entry in raw:
+            if not isinstance(entry, dict):
+                continue
+            quote = (entry.get("quote") or "").strip()
+            if not quote:
+                continue
+            items.append(f'      <p class="said">“{escape(quote)}”</p>')
+            if len(items) >= MAX_REVIEWS:
+                break
+    if not count_line and not items:
         return ""
-    inner = "\n".join(items)
+    parts = []
+    if count_line:
+        parts.append(count_line)
+    parts.extend(items)
+    inner = "\n".join(parts)
     return (
         '    <section class="reviews reveal">\n'
         f"{inner}\n"
@@ -423,6 +445,8 @@ def matchbook_block(prospect: dict) -> str:
     name = str(prospect.get("name") or "").strip()
     city = str(prospect.get("city") or "").strip()
     hours = str(prospect.get("hours") or "").strip()
+    license = str(prospect.get("license") or "").strip()
+    email = str(prospect.get("email") or "").strip()
     phone = str(prospect.get("phone") or "").strip()
     parts = []
     if name:
@@ -431,9 +455,14 @@ def matchbook_block(prospect: dict) -> str:
         parts.append(f'      <p class="mb-city">{escape(city)}</p>')
     if hours:
         parts.append(f'      <p class="mb-hours">{escape(hours)}</p>')
+    if license:
+        parts.append(f'      <p class="mb-license">{escape(license)}</p>')
     if phone:
         tel = escape(tel_href(phone), quote=True)
         parts.append(f'      <p class="mb-phone"><a href="{tel}">{escape(phone)}</a></p>')
+    if email:
+        mail = escape(email, quote=True)
+        parts.append(f'      <p class="mb-email"><a href="mailto:{mail}">{escape(email)}</a></p>')
     if not parts:
         return ""
     return (
