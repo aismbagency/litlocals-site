@@ -31,7 +31,8 @@ html { scroll-behavior: smooth; }
   }
 }
 
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; max-width: 100%; }
+html { overflow-x: clip; }
 body {
   background: var(--cream);
   color: var(--ink);
@@ -50,7 +51,7 @@ body {
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12; letter-spacing: -0.02em; margin: 0; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12; letter-spacing: -0.02em; margin: 0; overflow-wrap: anywhere; max-width: 100%; }
 p, ul, ol, figure, blockquote { margin: 0; }
 address { font-style: normal; }
 
@@ -857,10 +858,13 @@ blockquote.running cite {
 .wordmark .wm {
   font-family: var(--serif);
   font-weight: 700;
-  font-size: clamp(3.5rem, 19vw, 10rem);
-  line-height: 0.82;
+  font-size: clamp(2.55rem, 12.4vw, 10rem);
+  line-height: 0.88;
   letter-spacing: -0.035em;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
 }
 .wordmark .wm-sub {
   margin-top: 0.7rem;
@@ -895,11 +899,13 @@ blockquote.running cite {
   margin: 0.1rem 0 0.4rem;
   font-family: var(--serif);
   font-weight: 700;
-  font-size: clamp(2.6rem, 13vw, 6.2rem);
-  line-height: 0.86;
+  font-size: clamp(2.05rem, 10.4vw, 6.2rem);
+  line-height: 0.9;
   letter-spacing: -0.03em;
-  white-space: nowrap;
-  overflow: hidden;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
 }
 .pizzato-crop span { display: block; margin-left: -0.08em; }
 .pizzato-hint { font-size: 0.98rem; color: var(--ink-soft); max-width: 36rem; }
@@ -1004,4 +1010,54 @@ blockquote.running cite {
   }
   .story h2,
   .story .body { grid-column: 1; }
+}
+
+/* Phone: nothing may run off the right edge */
+@media (max-width: 719px) {
+  html, body { overflow-x: clip; max-width: 100%; }
+  .sample-tag {
+    flex-wrap: wrap;
+    row-gap: 0.25rem;
+    overflow-wrap: anywhere;
+  }
+  .sample-tag p { min-width: 0; }
+  .sample-tag a { white-space: normal; }
+  .site-header {
+    column-gap: 0.4rem;
+    padding-inline: 0.75rem;
+  }
+  .brand { min-width: 0; max-width: 100%; }
+  .brand-name {
+    font-size: clamp(0.92rem, 3.9vw, 1.08rem);
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+  .brand-trade {
+    font-size: 0.56rem;
+    letter-spacing: 0.1em;
+  }
+  .wordmark { overflow: hidden; max-width: 100%; padding-inline: var(--gutter); }
+  .wordmark .wm {
+    font-size: clamp(2.4rem, 11.8vw, 3.6rem);
+    white-space: normal;
+  }
+  .wordmark .wm .wm-2 { display: block; }
+  .pizzato-crop,
+  .pizzato-crop span {
+    white-space: normal;
+    overflow: visible;
+    max-width: 100%;
+  }
+  .hero h1,
+  .page-hero h1,
+  .page-head h1,
+  .offer h2,
+  .story h2,
+  .close-band p,
+  .quote-forest p,
+  .phone-plain {
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+  .wrap { width: min(var(--max), calc(100% - (var(--gutter) * 2))); max-width: 100%; }
 }
