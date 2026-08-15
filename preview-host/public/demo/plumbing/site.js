@@ -1,35 +1,4 @@
-/* Oak & Main Plumbing — SAMPLE. Hamburger, scroll header, buy pop, reveal. */
-(function () {
-  var nodes = document.querySelectorAll(".reveal");
-  if (!nodes.length) return;
-  function showAll() {
-    for (var i = 0; i < nodes.length; i++) nodes[i].classList.add("is-in");
-  }
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
-    showAll();
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    for (var i = 0; i < entries.length; i++) {
-      if (entries[i].isIntersecting) {
-        entries[i].target.classList.add("is-in");
-        io.unobserve(entries[i].target);
-      }
-    }
-  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-  for (var j = 0; j < nodes.length; j++) io.observe(nodes[j]);
-})();
-
-(function () {
-  var chrome = document.querySelector(".preview-chrome");
-  if (!chrome) return;
-  function sync() {
-    chrome.classList.toggle("is-scrolled", window.scrollY > 12);
-  }
-  window.addEventListener("scroll", sync, { passive: true });
-  sync();
-})();
-
+/* Oak & Main Plumbing — SAMPLE */
 (function () {
   var btn = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");
@@ -38,6 +7,7 @@
   function setOpen(open) {
     btn.setAttribute("aria-expanded", open ? "true" : "false");
     nav.classList.toggle("is-open", open);
+    document.body.classList.toggle("nav-open", open);
     if (back) {
       back.classList.toggle("is-on", open);
       if (open) back.removeAttribute("hidden");
@@ -55,34 +25,11 @@
 })();
 
 (function () {
-  var pop = document.getElementById("buy-pop");
-  if (!pop) return;
-  var closed = false;
-  var x = pop.querySelector(".buy-pop-x");
-  if (x) x.addEventListener("click", function () {
-    closed = true;
-    pop.classList.remove("is-on");
-    pop.setAttribute("hidden", "");
-  });
-  function show() {
-    if (closed) return;
-    pop.removeAttribute("hidden");
-    requestAnimationFrame(function () { pop.classList.add("is-on"); });
+  var header = document.querySelector(".site-header");
+  if (!header) return;
+  function sync() {
+    header.classList.toggle("is-solid", window.scrollY > 8);
   }
-  var buy = document.querySelectorAll('a[href*="buy.stripe.com"]');
-  for (var i = 0; i < buy.length; i++) {
-    buy[i].addEventListener("click", function (e) {
-      if (this.closest("#buy-pop")) return;
-      e.preventDefault();
-      show();
-    });
-  }
-  var foot = document.querySelector(".site-footer");
-  if (!foot || !("IntersectionObserver" in window)) return;
-  var io = new IntersectionObserver(function (entries) {
-    for (var i = 0; i < entries.length; i++) {
-      if (entries[i].isIntersecting) show();
-    }
-  }, { threshold: 0.2 });
-  io.observe(foot);
+  window.addEventListener("scroll", sync, { passive: true });
+  sync();
 })();
